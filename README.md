@@ -16,7 +16,7 @@ To mix it up, let's create the file structure for the Angular app first.
 * Create the following files:
   * app.js
   * services/github-service.js
-  * templates/index.html
+  * index.html
   * templates/home.html
   * templates/friend.html
 
