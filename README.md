@@ -1,3 +1,5 @@
+<img src="https://devmounta.in/img/logowhiteblue.png" width="250" align="right">
+
 CoderFriends
 ============
 
@@ -113,3 +115,12 @@ https://api.github.com/users/<username>/events
 
 * Create a method in your Github service called `getFriendActivity` and make sure it's passed a username
 * Have `eventData` be a resolved variable in the app's routing, then render each of the events in the `/friend/:github_username` route in the Angular app.
+
+## Contributions
+If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
+
+## Copyright
+
+© DevMountain LLC, 2015. Unauthorized use and/or duplication of this material without express and written permission from DevMountain, LLC is strictly prohibited. Excerpts and links may be used, provided that full and clear credit is given to DevMountain with appropriate and specific direction to the original content.
+
+<img src="https://devmounta.in/img/logowhiteblue.png" width="250">
