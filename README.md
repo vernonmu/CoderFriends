@@ -3,7 +3,7 @@
 CoderFriends
 ============
 
-##Objectives
+##Objective
 Use a Firebase backend with Passport and Express to show a user's coder friends.
 
 ##Resources
