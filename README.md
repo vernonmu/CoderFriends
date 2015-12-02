@@ -22,7 +22,7 @@ To mix it up, let's create the file structure for the Angular app first.
   * templates/home.html
   * templates/friend.html
 
-Let's use ngRoute to create routes for our app:
+Let's create routes for our app:
 
 ###/
 The base route will display the index.html template. Show a "Login with Github" button that will redirect users to `/auth/github`
