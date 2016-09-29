@@ -7,7 +7,7 @@ CoderFriends
 Use a Firebase backend with Passport and Express to show a user's coder friends.
 
 ##Resources
-* [passport-github] (https://github.com/jaredhanson/passport-github)
+* [passport-github2] (https://github.com/cfsghost/passport-github)
 * [Github API Docs] (https://developer.github.com/v3/)
 * [node-github] (https://github.com/mikedeboer/node-github)
 
