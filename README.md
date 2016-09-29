@@ -41,7 +41,7 @@ Create the server.js file and set it up to serve your static files.
   * express
   * express-session
   * passport
-  * passport-github
+  * passport-github2
 * [Create a Github app](https://github.com/settings/applications) and then set up the Github Strategy in your server.js with your associated `clientID` and `clientSecret`. Use a callbackURL that will redirect the user to `/auth/github/callback`
 * Make sure you use the session, passport.initialize and passport.session middelware
 * Set up your auth endpoints:
@@ -76,7 +76,7 @@ If the client gets a status of 403, it will know that it needs to redirect the u
 Now let's connect your Angular app to this setup.
 
 * In GithubService, create a `getFollowing` method that returns the results from the API call we created in Step 3.
-* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route. 
+* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route.
 * In your HomeCtrl, let's throw friends into the scope and render them in the view.
 
 ##Step 5: NG un-authed auto-redirect
