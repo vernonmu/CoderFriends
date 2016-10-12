@@ -25,7 +25,7 @@ To mix it up, let's create the file structure for the Angular app first.
 Let's create routes for our app:
 
 ###/
-The base route will display the index.html template. Show a "Login with Github" button that will redirect users to `/auth/github`
+The base route should display a "Login with Github" button that will redirect users to `/auth/github`. You may accomplish this by either 1) making a login.html templateUrl for this route, or 2) using an inline template in the route configuration (rather than a templateUrl).
 
 ###/home
 The home route will display the current user's GitHub friends via the home.html template
