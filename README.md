@@ -56,7 +56,10 @@ Use passport.authenticate and upon successful auth, send the user to `/#/home`
 Let's link the Angular Github service to our server.js
 
 ####GET `/api/github/following`
-In server.js, create the above endpoint and have it return the users that the currently logged in user follows. You can either use an http request using the `request` module, or you can use the npm module [node-github](https://github.com/mikedeboer/node-github)
+In server.js, create the above endpoint and have it return the users that the currently logged in user follows. To do this, you will need to make an API call directly from your server.js file. You can one of two ways:
+- Use an http request using the [request](https://www.npmjs.com/package/request#http-authentication) module. The url you will need to use is `https://api.github.com/user/followers`. Make sure that you authenticate the request with the logged in user's credentials. 
+
+- Or use the npm module [node-github](https://github.com/mikedeboer/node-github). The example on the page provides the needed information for your request.
 
 Some hints:
 * You'll want to make sure that whichever client that requests this endpoint is currently logged in. The best way to do this would be to write a middleware function that runs before the "get followers" logic so that you're sure that the current requesting user is logged in. Your middleware function could look like this:
