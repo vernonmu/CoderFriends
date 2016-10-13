@@ -57,7 +57,11 @@ Let's link the Angular Github service to our server.js
 
 ####GET `/api/github/following`
 In server.js, create the above endpoint and have it return the users that the currently logged in user follows. To do this, you will need to make an API call directly from your server.js file. You can one of two ways:
-- Use an http request using the [request](https://www.npmjs.com/package/request#http-authentication) module. The url you will need to use is `https://api.github.com/user/followers`. Make sure that you authenticate the request with the logged in user's credentials. 
+- Use an http request using the [request](https://www.npmjs.com/package/request#http-authentication) module. The url you will need to hit is 
+```
+https://api.github.com/user/followers
+``` 
+Make sure that you authenticate the request with the logged in user's credentials. 
 
 - Or use the npm module [node-github](https://github.com/mikedeboer/node-github). The example on the page provides the needed information for your request.
 
@@ -83,7 +87,7 @@ Now let's connect your Angular app to this setup.
 * In your homeCtrl (create this file, or do an inline controller in the home route in `app.js`), let's throw friends into the scope and render them in the view (home.html).
 
 ##Step 5: NG un-authed auto-redirect
-We need a way for Angular to detect an un-authed web request (403) so we can redirect them back to the login page. We can do that by injecting a service that acts as an interceptor in Angular's httpProvider. It works sort of like middleware in Node.
+We need a way for Angular to detect an un-authed web request (403) so we can redirect them back to the login page. We can do that by injecting a service that acts as an interceptor in Angular's httpProvider. It works sort of like middleware in Node. Add this chunk of code to your `app.js` file.
 
 ```
 app.config(function($httpProvider) {
@@ -110,14 +114,20 @@ app.factory('myHttpInterceptor', function($q) {
 Make it so that when the user clicks on one of the selected friends, it loads in that user's latest activity.
 
 ####GET /api/github/:username/activity
-Create this endpoint in your server.js that grabs data for the given username at this url:
-
+Create this endpoint in your server.js that grabs data for the given username. 
+- If you are using the `request` module from Step 3, the url you will need to hit is:
 ```
 https://api.github.com/users/<username>/events
 ```
+This request does not need to be authenticated with any credentials. 
+
+- Or, if you are using the `node-github` module from Step 3, you will need to use
+```
+github.activity.getEventsForUser
+```
 
 * Create a method in your Github service called `getFriendActivity` and make sure it's passed a username
-* Have `eventData` be a resolved variable in the app's routing, then render each of the events in the `/friend/:github_username` route in the Angular app.
+* Have `eventData` be a resolved variable in the app's routing, then render each of the events in the `/friend/:github_username` route in `friend.html`.
 
 ## Contributions
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
