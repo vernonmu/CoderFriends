@@ -75,12 +75,12 @@ var requireAuth = function(req, res, next) {
 
 If the client gets a status of 403, it will know that it needs to redirect the user to the `/` page so the user can log in again. **Keep in mind, this will happen every time your server restarts.**
 
-##Step 4: HomeCtrl + Github Service
+##Step 4: homeCtrl + Github Service
 Now let's connect your Angular app to this setup.
 
 * In GithubService, create a `getFollowing` method that returns the results from the API call we created in Step 3.
-* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route.
-* In your HomeCtrl, let's throw friends into the scope and render them in the view.
+* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route before it loads.
+* In your homeCtrl (create this file, or do an inline controller in the home route in `app.js`), let's throw friends into the scope and render them in the view (home.html).
 
 ##Step 5: NG un-authed auto-redirect
 We need a way for Angular to detect an un-authed web request (403) so we can redirect them back to the login page. We can do that by injecting a service that acts as an interceptor in Angular's httpProvider. It works sort of like middleware in Node.
