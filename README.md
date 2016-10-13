@@ -25,7 +25,7 @@ To mix it up, let's create the file structure for the Angular app first.
 Let's create routes for our app:
 
 ###/
-The base route will display the index.html template. Show a "Login with Github" button that will redirect users to `/auth/github`
+The base route should display a "Login with Github" button that will redirect users to `/auth/github`. You may accomplish this by either 1) making a login.html templateUrl for this route, or 2) using an inline template in the route configuration (rather than a templateUrl).
 
 ###/home
 The home route will display the current user's GitHub friends via the home.html template
@@ -56,7 +56,14 @@ Use passport.authenticate and upon successful auth, send the user to `/#/home`
 Let's link the Angular Github service to our server.js
 
 ####GET `/api/github/following`
-In server.js, create the above endpoint and have it return the users that currently logged in user follows. You can either use an http request using the `request` module, or you can use the npm module [node-github](https://github.com/mikedeboer/node-github)
+In server.js, create the above endpoint and have it return the users that the currently logged in user follows. To do this, you will need to make an API call directly from your server.js file. You can one of two ways:
+- Use an http request using the [request](https://www.npmjs.com/package/request#http-authentication) module. The url you will need to hit is 
+```
+https://api.github.com/user/followers
+``` 
+Make sure that you authenticate the request with the logged in user's credentials. 
+
+- Or use the npm module [node-github](https://github.com/mikedeboer/node-github). The example on the page provides the needed information for your request.
 
 Some hints:
 * You'll want to make sure that whichever client that requests this endpoint is currently logged in. The best way to do this would be to write a middleware function that runs before the "get followers" logic so that you're sure that the current requesting user is logged in. Your middleware function could look like this:
@@ -72,15 +79,15 @@ var requireAuth = function(req, res, next) {
 
 If the client gets a status of 403, it will know that it needs to redirect the user to the `/` page so the user can log in again. **Keep in mind, this will happen every time your server restarts.**
 
-##Step 4: HomeCtrl + Github Service
+##Step 4: homeCtrl + Github Service
 Now let's connect your Angular app to this setup.
 
 * In GithubService, create a `getFollowing` method that returns the results from the API call we created in Step 3.
-* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route.
-* In your HomeCtrl, let's throw friends into the scope and render them in the view.
+* Let's resolve the promise from `getFollowing` into a `friends` variable in the `/home` route before it loads.
+* In your homeCtrl (create this file, or do an inline controller in the home route in `app.js`), let's throw friends into the scope and render them in the view (home.html).
 
 ##Step 5: NG un-authed auto-redirect
-We need a way for Angular to detect an un-authed web request (403) so we can redirect them back to the login page. We can do that by injecting a service that acts as an interceptor in Angular's httpProvider. It works sort of like middleware in Node.
+We need a way for Angular to detect an un-authed web request (403) so we can redirect them back to the login page. We can do that by injecting a service that acts as an interceptor in Angular's httpProvider. It works sort of like middleware in Node. Add this chunk of code to your `app.js` file.
 
 ```
 app.config(function($httpProvider) {
@@ -107,14 +114,20 @@ app.factory('myHttpInterceptor', function($q) {
 Make it so that when the user clicks on one of the selected friends, it loads in that user's latest activity.
 
 ####GET /api/github/:username/activity
-Create this endpoint in your server.js that grabs data for the given username at this url:
-
+Create this endpoint in your server.js that grabs data for the given username. 
+- If you are using the `request` module from Step 3, the url you will need to hit is:
 ```
 https://api.github.com/users/<username>/events
 ```
+This request does not need to be authenticated with any credentials. 
+
+- Or, if you are using the `node-github` module from Step 3, you will need to use
+```
+github.activity.getEventsForUser
+```
 
 * Create a method in your Github service called `getFriendActivity` and make sure it's passed a username
-* Have `eventData` be a resolved variable in the app's routing, then render each of the events in the `/friend/:github_username` route in the Angular app.
+* Have `eventData` be a resolved variable in the app's routing, then render each of the events in the `/friend/:github_username` route in `friend.html`.
 
 ## Contributions
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
