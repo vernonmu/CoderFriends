@@ -4,7 +4,7 @@ CoderFriends
 ============
 
 ##Objective
-Use a Firebase backend with Passport and Express to show a user's coder friends.
+Use a Node backend with Passport and Express to show a user's coder friends.
 
 ##Resources
 * [passport-github2] (https://github.com/cfsghost/passport-github)
