@@ -1,0 +1,29 @@
+{
+  "name": "CoderFriends",
+  "version": "1.0.0",
+  "description": "<img src=\"https://s3.amazonaws.com/devmountain/www/img/logowhiteblue.png\" width=\"250\" align=\"right\">",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vernonmu/CoderFriends.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vernonmu/CoderFriends/issues"
+  },
+  "homepage": "https://github.com/vernonmu/CoderFriends#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "node-github": "0.0.3",
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10",
+    "request": "^2.81.0"
+  }
+}

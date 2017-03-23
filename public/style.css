@@ -1,0 +1,20 @@
+body {
+  background-color:#f3f3f3;
+}
+
+.testing {
+  text-align: center;
+  font-size:2em;
+  padding-top:5%;
+}
+
+.pain img {
+  height:140px;
+  width:140px;
+  border:2px solid #ccc;
+}
+
+.pain p {
+  font-size:14px;
+  margin:2%;
+}
