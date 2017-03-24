@@ -20,6 +20,16 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pain col-sm-4 col-md-3" ng-repeat="follower in followers">
+            <a ng-href="/{{follower.url}}" target="_blank"><img ng-src="{{follower.avatar_url}}" class="img-circle"/></a>
+            <p><a ng-href="/{{follower.url}}" target="_blank">{{follower.login}}</a></p>
+          </div>
+        </div>
+        </div>
+        
+
       </div>
     </div>
 
